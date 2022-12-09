@@ -20,6 +20,8 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-props-no-spreading": "off",
-    "quotes": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "quotes": "off",
+    "comma-dangle": "off"
   }
 }

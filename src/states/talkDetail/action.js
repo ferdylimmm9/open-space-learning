@@ -2,12 +2,12 @@
  * @TODO: Define all the actions (creator) for the talkDetail state
  */
 
-import api from "../../utils/api";
+import api from '../../utils/api';
 
 export const ActionType = {
-  RECEIVE_TALK_DETAIL: "RECEIVE_TALK_DETAIL",
-  CLEAR_TALK_DETAIL: "CLEAR_TALK_DETAIL",
-  TOGGLE_LIKE_TALK_DETAIL: "TOGGLE_LIKE_TALK_DETAIL",
+  RECEIVE_TALK_DETAIL: 'RECEIVE_TALK_DETAIL',
+  CLEAR_TALK_DETAIL: 'CLEAR_TALK_DETAIL',
+  TOGGLE_LIKE_TALK_DETAIL: 'TOGGLE_LIKE_TALK_DETAIL',
 };
 
 export function receiveTalkDetailActionCreator(talkDetail) {
@@ -48,10 +48,9 @@ export function asyncReceiveTalkDetail(talkId) {
 
 export function asyncToogleLikeTalkDetail() {
   return async (dispatch, getState) => {
-    const { authUser, talkDetail } = getState();
-    dispatch(toggleLikeTalkDetailActionCreator(authUser.id));
-
     try {
+      const { authUser, talkDetail } = getState();
+      dispatch(toggleLikeTalkDetailActionCreator(authUser.id));
       await api.toggleLikeTalk(talkDetail.id);
     } catch (error) {
       alert(error.message);
