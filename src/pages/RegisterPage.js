@@ -1,9 +1,9 @@
-import React from "react";
-import { IoEarthOutline } from "react-icons/io5";
-import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import RegisterInput from "../components/RegisterInput";
-import { asyncRegisterUser } from "../states/users/action";
+import React from 'react';
+import { IoEarthOutline } from 'react-icons/io5';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import RegisterInput from '../components/RegisterInput';
+import { asyncRegisterUser } from '../states/users/action';
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function RegisterPage() {
     dispatch(asyncRegisterUser({ name, id, password }));
     // @TODO: dispatch async action to register
 
-    navigate("/");
+    navigate('/');
   };
 
   return (

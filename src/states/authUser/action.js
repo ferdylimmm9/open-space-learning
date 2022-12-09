@@ -1,11 +1,12 @@
-import api from "../../utils/api";
+import { hideLoading, showLoading } from 'react-redux-loading-bar';
+import api from '../../utils/api';
 
 /**
  * @TODO: Define all the actions (creator) for the authUser state
  */
 export const ActionType = {
-  SET_AUTH_USER: "SET_AUTH_USER",
-  UNSET_AUTH_USER: "UNSET_AUTH_USER",
+  SET_AUTH_USER: 'SET_AUTH_USER',
+  UNSET_AUTH_USER: 'UNSET_AUTH_USER',
 };
 
 export function setAuthUserActionCreator(authUser) {
@@ -28,6 +29,7 @@ export function unsetAuthUserActionCreator() {
 
 export function asyncSetAuthUser({ id, password }) {
   return async (dispatch) => {
+    dispatch(showLoading());
     try {
       const token = await api.login({ id, password });
       api.putAccessToken(token);
@@ -37,12 +39,15 @@ export function asyncSetAuthUser({ id, password }) {
     } catch (error) {
       alert(error.message);
     }
+    dispatch(hideLoading());
   };
 }
 
 export function asyncUnsetAuthUser() {
   return (dispatch) => {
+    dispatch(showLoading());
     dispatch(unsetAuthUserActionCreator());
-    api.putAccessToken("");
+    api.putAccessToken('');
+    dispatch(hideLoading());
   };
 }
